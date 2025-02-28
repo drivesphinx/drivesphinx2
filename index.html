@@ -3,10 +3,10 @@
   <head>
     <script>
       window.GLOBAL_CONFIG = {
-        SCF_GATEWAY: `//drive.sphx.workers.dev`,
+        SCF_GATEWAY: `//drive.sphx.workers.dev`
         SITE_NAME: `SphinxDrive`, 
-        PRELOAD: false,
-        IS_CF: true,
+        IS_BUSINESS: false,
+        PRELOAD: false, 
       };
     </script>
     <meta charset="utf-8" />
@@ -14,14 +14,12 @@
       content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"
       name="viewport"
     />
-    <script
-      type="module"
-      src="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/ionicons/4.6.3/ionicons/ionicons.esm.js"
-    ></script>
-    <script
-      nomodule
-      src="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/ionicons/4.6.3/ionicons/ionicons.js"
-    ></script>
+    <link rel="icon" href="data:;base64,=" type="image/x-icon" />
+    <link
+      href="//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+      type="text/css"
+      rel="stylesheet"
+    />
     <style>
       .sk-folding-cube {
         margin: 20px auto;
@@ -145,6 +143,23 @@
         padding: 0;
       }
 
+      .list-header .file > div {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        font-weight: bold;
+        column-gap: 0.3em;
+        user-select: none;
+      }
+
+      .list-header .file > div:active {
+        color: rgb(90, 101, 133);
+      }
+
+      .list-header i {
+        font-size: 1em !important;
+      }
+
       .upload-entry-wrapper {
         height: 2.5em;
         display: flex;
@@ -168,14 +183,17 @@
         justify-content: center;
         column-gap: 0.6em;
         margin-top: 1em;
+        height: 2.5em;
       }
 
       .password {
-        margin: 0 auto;
+        display: flex;
+        column-gap: 0.6em;
+        height: 100%;
       }
 
       .password input {
-         width: 300px;
+        width: 300px;
     font-size: 16px;
     background: #ffffff;
     outline: none;
@@ -184,18 +202,19 @@
     font-weight: 600;
     margin: 5px;
     height: 55px;
-    text-align: center;
+    text-align: center
       }
 
       .password button,
       .file-upload-chooser button,
       .file-upload-chooser select,
       .file-upload-label {
-        width: 120px;
-         font-size: 16px;
-         background: #c4abff;
+       width: 120px;
+      font-size: 16px;
+     background: #c4abff;
+        
          outline: none;
-         border: solid rgb(67 36 36) 3px;
+        border: solid rgb(67 36 36) 3px;
          border-radius: 50px;
          font-weight: 600;
          margin: 5px;
@@ -203,14 +222,15 @@
          text-align: center;
       }
 
-      .password button:hover,
-      .upload-entry-btn:hover,
-      .file-upload-chooser button:hover,
-      .file-upload-label:hover {
+      .password button:active,
+      .upload-entry-btn:active,
+      .file-upload-chooser button:active,
+      .file-upload-label:active {
         color: white;
         background: rgb(218, 215, 215);
       }
 
+      .password-wrapper,
       .file-upload-wrapper {
         font-size: 0.8em;
         padding: 0 1em;
@@ -221,8 +241,9 @@
       }
 
       .file-upload-label {
-        display: inline-block;
-        line-height: 2em;
+        display: flex;
+        align-items: center;
+        padding: 0 0.5em;
       }
 
       .file-upload-name {
@@ -235,7 +256,7 @@
       .file-upload-progress {
         margin: 1em 0;
         padding: 1em;
-        background-color: rgb(245, 245, 245);
+        background-color: rgb(247, 248, 250);
         white-space: nowrap;
         width: fit-content;
         min-width: 100%;
@@ -251,6 +272,63 @@
       .markdown-body,
       .markdown-body * {
         font-family: initial;
+      }
+
+      .markdown-alert {
+        padding: 0 1em;
+        margin-bottom: 16px;
+        color: inherit;
+        border-left: 0.25em solid #444c56;
+      }
+
+      .markdown-alert-title {
+        display: inline-flex;
+        align-items: center;
+        font-weight: 500;
+      }
+
+      .markdown-alert-note {
+        border-left-color: #539bf5;
+      }
+
+      .markdown-alert-tip {
+        border-left-color: #57ab5a;
+      }
+
+      .markdown-alert-important {
+        border-left-color: #986ee2;
+      }
+
+      .markdown-alert-warning {
+        border-left-color: #c69026;
+      }
+
+      .markdown-alert-caution {
+        border-left-color: #e5534b;
+      }
+
+      .markdown-alert-note > .markdown-alert-title {
+        color: #539bf5;
+      }
+
+      .markdown-alert-tip > .markdown-alert-title {
+        color: #57ab5a;
+      }
+
+      .markdown-alert-important > .markdown-alert-title {
+        color: #986ee2;
+      }
+
+      .markdown-alert-warning > .markdown-alert-title {
+        color: #c69026;
+      }
+
+      .markdown-alert-caution > .markdown-alert-title {
+        color: #e5534b;
+      }
+
+      .mr-2 {
+        margin-right: 0.5rem;
       }
 
       pre,
@@ -306,10 +384,9 @@
         -webkit-user-select: none;
         -ms-user-select: none;
         background-color: #b7a5ff; font-family: cursive; font-size: 20px;
-
       }
 
-      .btn:hover {
+      .btn:active {
         color: white;
         background: rgb(218, 215, 215);
       }
@@ -317,12 +394,10 @@
       .btn.download {
         margin-right: 1em;
       }
-
-      #arrow-back,
+       #arrow-back,
       #arrow-forward {
         color: rgb(218, 215, 215);
       }
-
       .loading-wrapper {
         position: fixed;
         height: 2em;
@@ -336,19 +411,26 @@
         color: white;
         background: rgb(218, 215, 215);
         height: 100%;
-        width: 8em;
+        width: fit-content;
+        min-width: 8em;
+        padding: 0 1em;
         margin: 0 auto;
         text-align: center;
         border-radius: 1em;
       }
 
-      ion-icon {
-        font-size: 1.8em;
-        color: #1d38f9;
+      i {
+        font-size: 1.5em !important;
+      }
+
+      i.disabled {
+        color: rgb(218, 215, 215);
       }
 
       * {
         box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent; /* Removes touch background */
+        -webkit-touch-callout: none; /* Removes the callout on touch */
         font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
         background-image: url(https://i.ibb.co/9cjdyS0/sphinxcloudpremiumwallpaper.png); background-repeat: no-repeat; background-attachment: fixed;
       }
@@ -398,7 +480,7 @@
       }
 
       .header {
-        padding: 0 0 0 4em;
+        padding: 0 1.8em 0 4em;
         height: 100%;
         display: flex;
         align-items: center;
@@ -411,6 +493,7 @@
 
       .site {
         white-space: nowrap;
+        font-weight: bold;
       }
 
       .nav {
@@ -431,10 +514,24 @@
         cursor: default;
       }
 
-      #main-page:hover,
-      .nav-path:hover,
-      .tree-node:hover,
-      .row.file-wrapper:hover {
+      #arrow-back,
+      #arrow-forward {
+        color: black;
+        cursor: pointer;
+      }
+
+      #arrow-back[disabled],
+      #arrow-forward[disabled] {
+        color: rgb(218, 215, 215);
+        cursor: initial;
+      }
+
+      #arrow-back:not([disabled]):active,
+      #arrow-forward:not([disabled]):active,
+      #main-page:active,
+      .nav-path:active,
+      .tree-node:active,
+      .row.file-wrapper:active {
         color: rgb(90, 101, 133);
         cursor: pointer;
       }
@@ -462,12 +559,17 @@
 
       .tree-node-wrapper {
         display: table;
-        margin-left: 1em;
+        margin-left: 1.5em;
       }
 
       .tree-node {
         display: flex;
         align-items: center;
+      }
+
+      .tree-node > i {
+        text-align: center;
+        min-width: 0.8em;
       }
 
       .tree-node-name {
@@ -497,6 +599,10 @@
         height: 3em;
       }
 
+      .row.file-wrapper i {
+        min-width: 1em;
+      }
+
       .file {
         width: 100%;
         display: flex;
@@ -504,8 +610,6 @@
       }
 
       .name {
-        display: flex;
-        align-items: center;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -514,17 +618,18 @@
       }
 
       .list-header .name {
+        display: flex;
+        align-items: center;
         width: calc(70% + 1.1em);
         padding-left: 0;
       }
 
-      .time {
+      .lastModifiedDateTime {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        text-align: right;
+        justify-content: right;
         width: 133px;
-        display:none !important;
       }
 
       .size {
@@ -532,10 +637,51 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         margin-left: auto;
+        display: flex;
+        text-align: right;
       }
 
-      .size * {
-        display: inline;
+      .size .unit {
+        width: 1.7em;
+      }
+
+      #back-to-top {
+        position: fixed;
+        right: 1em;
+        bottom: 1em;
+        font-size: 2em;
+        color: rgb(90 90 90 / 30%);
+        cursor: pointer;
+      }
+
+      #back-to-top:active {
+        color: rgb(0 0 0);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .password button:hover,
+        .upload-entry-btn:hover,
+        .file-upload-chooser button:hover,
+        .file-upload-label:hover,
+        .btn:hover {
+          color: white;
+          background: rgb(218, 215, 215);
+        }
+
+        #arrow-back:not([disabled]):hover,
+        #arrow-forward:not([disabled]):hover,
+        #main-page:hover,
+        .nav-path:hover,
+        .tree-node:hover,
+        .list-header .file > div:hover,
+        .row.file-wrapper:hover {
+          color: rgb(90, 101, 133);
+          cursor: pointer;
+        }
+
+        #back-to-top:hover {
+          color: rgb(0 0 0);
+        }
       }
 
       @media screen and (max-width: 1000px) {
@@ -566,11 +712,11 @@
 
       @media screen and (max-width: 600px) {
         .name {
-          width: 75%;
+          width: 70%;
         }
 
-        .time {
-          display: none;
+        .lastModifiedDateTime {
+          display: none !important;
         }
 
         .header {
@@ -603,8 +749,11 @@
         }
 
         .logo {
-          width: 2em;
-          height: 2em;
+          width: 1.6em;
+        }
+
+        #main-page {
+          margin-right: 0;
         }
       }
     </style>
@@ -613,14 +762,9 @@
         let xhr = new XMLHttpRequest();
         if ('withCredentials' in xhr) {
           xhr.open(method, url, true);
-        } else if (typeof XDomainRequest !== 'undefined') {
-          xhr = new XDomainRequest();
-          xhr.open(method, url);
+          xhr.timeout = timeout;
         } else {
           xhr = null;
-        }
-        if (xhr) {
-          xhr.timeout = timeout;
         }
         return xhr;
       }
@@ -663,7 +807,7 @@
 
       function fromCdn(cdnName, ...resources) {
         const cdnMap = {
-          jsdelivr: '//cdn.jsdelivr.net/npm',
+          jsdelivr: '//gcore.jsdelivr.net/npm',
           taobao: '//registry.npmmirror.com',
           bytedance: '//lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M',
         };
@@ -671,8 +815,9 @@
         return resources.map((r) => `${baseURL}${r}`);
       }
 
-      function loadResource(resources) {
-        return Promise.all(resources.map(load));
+      function loadResource(...resources) {
+        const allResources = resources.flat();
+        return Promise.all(allResources.map(load));
 
         function load(resource) {
           if (!window.resourceCache[resource]) {
@@ -723,7 +868,7 @@
         }
       }
 
-      function putLoadingAnimation(selectorOrElem) {
+      function putPreviewLoadingAnimation(selectorOrElem) {
         const elem =
           typeof selectorOrElem === 'string'
             ? document.querySelector(selectorOrElem)
@@ -732,31 +877,55 @@
           elem.innerHTML = '';
           elem.appendChild(
             document
-              .getElementById('loading-wrapper-templete')
+              .getElementById('loading-wrapper-template')
               .content.cloneNode(true)
           );
         }
       }
 
-      function renderPage(data, cache) {
+      function switchGlobalLoadingIndicator(msg) {
+        const loadingWrapper = document.querySelector('.loading-wrapper');
+
+        // Now loading is displaying, closing it.
+        if (loadingWrapper.dataset.hidden === '0') {
+          if (msg) {
+            loadingWrapper.querySelector('.loading').innerText = msg;
+            setTimeout(() => (loadingWrapper.dataset.hidden = '1'), 3000);
+          } else {
+            loadingWrapper.dataset.hidden = '1';
+          }
+          return;
+        }
+
+        msg = msg || 'Loading...';
+        loadingWrapper.querySelector('.loading').innerText = msg;
+        loadingWrapper.dataset.hidden = '0';
+      }
+
+      function renderPage(data, cache, fromLoadNextPage) {
+        switchGlobalLoadingIndicator();
+
+        if (!fromLoadNextPage) {
+          document.getElementById('back-to-top').click();
+        }
+
         let files;
-        if (data) {
-          files = JSON.parse(data);
+        if (data?.parent) {
+          files = data;
           window.fileCache.set(files.parent, files);
           preCache(files, 0);
         } else {
           files = cache;
         }
-        if (files.parent === window.backFordwardCache.current) {
+        if (files.parent === window.backForwardCache.current) {
           renderPath(files.parent);
           if (files.encrypted) {
             handleEncryptedFolder(files);
           } else {
-            renderFileList(files);
+            renderFileList(files, fromLoadNextPage);
           }
           renderTreeNode(files);
         }
-        document.querySelector('.loading-wrapper').dataset.hidden = 1;
       }
 
       function renderPath(path) {
@@ -786,7 +955,7 @@
         }
       }
 
-      function renderFileList(files) {
+      function renderFileList(page, fromLoadNextPage) {
         switchRightDisplay('list');
 
         const formatDate = (date) => {
@@ -807,19 +976,21 @@
             size /= 1024;
             count++;
           }
-          return `${size.toFixed(2)} ${
-            ['<pre> </pre>', 'K', 'M', 'G', 'T', 'P'][count]
-          }B`;
+          return [size.toFixed(2), `${['', 'K', 'M', 'G', 'T', 'P'][count]}B`];
         };
 
         const createFileWrapper = (type, name, time, size, path, url) => {
           const fileWrapper = document
-            .getElementById('file-wrapper-templete')
+            .getElementById('file-wrapper-template')
             .content.cloneNode(true);
-          fileWrapper.querySelector('ion-icon').setAttribute('name', type);
-          fileWrapper.querySelector('.name').innerHTML = name;
-          fileWrapper.querySelector('.time').innerHTML = formatDate(time);
-          fileWrapper.querySelector('.size').innerHTML = formatSize(size);
+          fileWrapper.querySelector('i').className = `zmdi zmdi-${type}`;
+          fileWrapper.querySelector('.name').innerText = name;
+          fileWrapper.querySelector('.lastModifiedDateTime').innerText =
+            formatDate(time);
+          [
+            fileWrapper.querySelector('.size .value').innerText,
+            fileWrapper.querySelector('.size .unit').innerText,
+          ] = formatSize(size);
           addFileListLineListener(
             fileWrapper.querySelector('.row.file-wrapper'),
             path,
@@ -829,47 +1000,131 @@
           return fileWrapper;
         };
 
-        const fileList = document.getElementById('file-list');
-        fileList.innerHTML = '';
-        files.files.forEach((file) => {
-          if (file.name.endsWith('.md')) {
+        const children = [];
+        const parent = page.parent === window.api.root ? '' : page.parent;
+        page.files.forEach((file) => {
+          // Only load readme not all .md files for performance reason.
+          if (file.name.toLowerCase() === 'readme.md') {
             if (file.url) {
               renderMarkdown(
-                files.parent + (files.parent === '/' ? '' : '/') + file.name,
+                page.parent + (page.parent === '/' ? '' : '/') + file.name,
                 file.url
               );
             }
-          }
-          if (file.name === '.upload') {
-            document.querySelector('.upload-entry-wrapper').dataset.hidden = 0;
+          } else if (file.name === '.upload') {
+            document.querySelector('.upload-entry-wrapper').dataset.hidden =
+              '0';
             document.querySelector('.upload-entry-btn').onclick = () => {
-              window.backFordwardCache.preview = true;
+              window.backForwardCache.preview = true;
               switchRightDisplay('upload');
             };
-          } else if (file.name !== 'README.md') {
-            const parent = files.parent === window.api.root ? '' : files.parent;
-            fileList.appendChild(
-              createFileWrapper(
-                file.url ? 'document' : 'folder',
+          } else {
+            if (!file.toFragment) {
+              file.toFragment = createFileWrapper.bind(
+                null,
+                file.url ? 'file' : 'folder',
                 file.name,
-                file.time,
+                file.lastModifiedDateTime,
                 file.size,
                 parent + '/' + file.name,
                 file.url
-              )
-            );
+              );
+            }
+            children.push(file);
           }
         });
+
+        if (!page.lazyRenderStat) {
+          page.lazyRenderStat = { pageSize: 200 };
+          const stat = page.lazyRenderStat;
+          stat.observer = new IntersectionObserver((entries) => {
+            if (Date.now() - stat.lastRenderedTs <= 500 /* 0.5s */) {
+              return;
+            }
+
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                stat.lastRenderedTs = Date.now();
+                // Do not load next page before all the data loaded being rendered.
+                if (
+                  stat.renderedItems >= stat.children.length &&
+                  page.skipToken
+                ) {
+                  loadNextPage(page);
+                } else {
+                  renderItems();
+                }
+                return;
+              }
+            });
+          });
+        }
+        const stat = page.lazyRenderStat;
+        stat.children = children;
+        if (page.compare && !page.skipToken && !fromLoadNextPage) {
+          // All data loaded before this call, sort them all.
+          stat.children.sort(page.compare);
+        }
+        if (!fromLoadNextPage) {
+          // Rendering from start, sort all loaded data for business version even if there is data unloaded.
+          stat.renderedItems = 0;
+          if (
+            page.compare &&
+            page.skipToken &&
+            window.GLOBAL_CONFIG.IS_BUSINESS
+          ) {
+            stat.children.sort(page.compare);
+          }
+        }
+        renderItems(fromLoadNextPage);
+
+        // The arg is necessary, or it will always be the value captured at the first time.
+        function renderItems(fromLoadNextPage) {
+          const startIndex = stat.renderedItems;
+          stat.renderedItems += stat.pageSize;
+          stat.renderedItems = Math.min(
+            stat.renderedItems,
+            stat.children.length
+          );
+          const toBeRendered = stat.children.slice(
+            startIndex,
+            stat.renderedItems
+          );
+          if (
+            page.compare &&
+            window.GLOBAL_CONFIG.IS_BUSINESS &&
+            fromLoadNextPage
+          ) {
+            // Sort the new loaded slice for business version.
+            toBeRendered.sort(page.compare);
+          }
+
+          const fragment = document.createDocumentFragment();
+          fragment.append(
+            ...toBeRendered.map(({ toFragment }) => toFragment())
+          );
+          const listContainer = document.getElementById('file-list');
+          if (startIndex === 0) {
+            listContainer.replaceChildren(fragment);
+          } else {
+            listContainer.lastElementChild.style.backgroundColor = '#f1f1f1';
+            listContainer.appendChild(fragment);
+          }
+          stat.observer?.disconnect();
+          if (page.skipToken || stat.renderedItems < stat.children.length) {
+            stat.observer.observe(listContainer.lastElementChild);
+          }
+        }
       }
 
       async function renderTreeNode(files) {
-        const createTreeNodeWrapper = (array, type, name, path) => {
+        const createTreeNodeWrapper = (caretType, folderType, name, path) => {
           const treeNodeWrapper = document
             .getElementById('tree-node-wrapper-template')
             .content.cloneNode(true);
-          const icons = treeNodeWrapper.querySelectorAll('ion-icon');
-          icons[0].setAttribute('name', array);
-          icons[1].setAttribute('name', type);
+          const icons = treeNodeWrapper.querySelectorAll('i');
+          icons[0].className = `zmdi zmdi-${caretType}`;
+          icons[1].className = `zmdi zmdi-${folderType}`;
           treeNodeWrapper.querySelector('.tree-node-name').innerText = name;
           treeNodeWrapper.appendNode = (node) =>
             treeNodeWrapper.querySelector('.tree-node-wrapper').append(node);
@@ -890,8 +1145,8 @@
         };
         const maxIndex = paths.length - 1;
         let currentTreeNode = createTreeNodeWrapper(
-          'arrow-dropdown',
-          'folder-open',
+          'caret-down',
+          'folder-outline',
           paths[maxIndex],
           absolutePath(maxIndex)
         );
@@ -899,7 +1154,7 @@
           if (!file.url) {
             currentTreeNode.appendNode(
               createTreeNodeWrapper(
-                'arrow-dropright',
+                'caret-right',
                 'folder',
                 file.name,
                 files.parent + '/' + file.name
@@ -911,7 +1166,7 @@
         for (let i = maxIndex - 1; i > 0; i--) {
           const currentTreeNodeParentAbsolutePath = absolutePath(i);
           const currentTreeNodeParent = createTreeNodeWrapper(
-            'arrow-dropdown',
+            'caret-down',
             'folder',
             paths[i],
             currentTreeNodeParentAbsolutePath
@@ -925,7 +1180,7 @@
                 } else {
                   currentTreeNodeParent.appendNode(
                     createTreeNodeWrapper(
-                      'arrow-dropright',
+                      'caret-right',
                       'folder',
                       file.name,
                       currentTreeNodeParentAbsolutePath + '/' + file.name
@@ -953,7 +1208,7 @@
               } else {
                 treeRoot.append(
                   createTreeNodeWrapper(
-                    'arrow-dropright',
+                    'caret-right',
                     'folder',
                     file.name,
                     window.api.root + file.name
@@ -969,23 +1224,35 @@
 
       async function renderMarkdown(path, url) {
         const isReadMe = () =>
-          window.backFordwardCache.current +
-            (window.backFordwardCache.current === '/' ? '' : '/') +
+          window.backForwardCache.current +
+            (window.backForwardCache.current === '/' ? '' : '/') +
             'README.md' ===
           path;
 
         if (isReadMe()) {
-          putLoadingAnimation('#readme');
+          putPreviewLoadingAnimation('#readme');
         }
 
         await loadResource(
           fromCdn(
+            'taobao',
+            '/marked/15.0.4/files/marked.min.js',
+            '/marked-highlight/2.2.1/files/lib/index.umd.js'
+          ),
+          fromCdn(
             'bytedance',
             '/github-markdown-css/5.1.0/github-markdown-light.min.css',
             '/highlight.js/11.4.0/styles/github.min.css',
-            '/highlight.js/11.4.0/highlight.min.js',
-            '/marked/4.0.2/marked.min.js'
-          )
+            '/highlight.js/11.4.0/highlight.min.js'
+          ),
+          // Optional Markdown extensions
+          // fromCdn('jsdelivr', '/marked-alert@2.1.2/dist/index.umd.js'),
+          // fromCdn(
+          //   'taobao',
+          //   '/marked-katex-extension/5.1.3/files/lib/index.umd.js',
+          //   '/katex/0.16.19/files/dist/katex.min.css',
+          //   '/katex/0.16.19/files/dist/katex.min.js'
+          // )
         );
 
         const render = (text) => {
@@ -993,15 +1260,17 @@
           if (!cache || cache === true) {
             window.fileCache.set(path, text);
           }
+          if (!isReadMe() && !window.backForwardCache.preview) {
+            return;
+          }
 
-          // It is not possible to load resources that are not cached and in an encrypted path.
           const transformHref = (href) => {
             if (href.startsWith('http') || href.startsWith('//')) {
               return href;
             }
 
             const dummyBase = new URL(
-              window.backFordwardCache.current + '/',
+              window.backForwardCache.current + '/',
               location
             );
             const absPath = new URL(href, dummyBase).href.slice(
@@ -1019,29 +1288,35 @@
           };
 
           const renderer = new marked.Renderer();
-          renderer.image = (href, title, text) =>
-            `<img src="${transformHref(href)}" alt="${text}">`;
-          renderer.link = (href, title, text) =>
-            `<a href="${transformHref(href)}">${text}</a>`;
+          renderer.image = (href) =>
+            `<img src="${transformHref(href.href)}" alt="${href.text}">`;
+          renderer.link = (href) =>
+            `<a href="${transformHref(href.href)}">${href.text}</a>`;
 
-          text = marked.parse(text, {
-            gfm: true,
-            renderer: renderer,
-            highlight: (code, language, callback) => {
-              try {
-                return hljs.highlight(code, {
-                  language,
-                  ignoreIllegals: true,
-                }).value;
-              } catch (_) {
-                return code;
-              }
-            },
-          });
+          text = new marked
+            .Marked(
+              markedHighlight.markedHighlight({
+                langPrefix: 'hljs language-',
+                highlight(code, lang, info) {
+                  const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+                  return hljs.highlight(code, { language }).value;
+                }
+              }),
+              // Optional Markdown extensions
+              // markedAlert(),
+              // markedKatex({
+              //   throwOnError: false,
+              //   nonStandard: true
+              // })
+            )
+            .parse(text, {
+              gfm: true,
+              renderer: renderer,
+            });
 
           if (isReadMe()) {
             document.getElementById('readme').innerHTML = text;
-          } else if (window.backFordwardCache.preview) {
+          } else if (window.backForwardCache.preview) {
             const markdownBody = document.createElement('div');
             markdownBody.classList.add('markdown-body');
             markdownBody.innerHTML = text;
@@ -1053,7 +1328,7 @@
 
         const text = window.fileCache.get(path);
         if (text === true) {
-          setTimeout(() => renderMarkdown(path, url), 200);
+          setTimeout(() => renderMarkdown(path, url), 300);
         } else if (text) {
           render(text);
         } else {
@@ -1077,14 +1352,14 @@
         const buttonParent = button.parentElement;
         const buttonClone = button.cloneNode(true);
         buttonParent.replaceChild(buttonClone, button);
-        input.placeholder = 'Contraseña...';
+        input.placeholder = '请输入密码';
         buttonClone.addEventListener('click', (event) => {
           const passwd = input.value;
           if (!input.value) {
             return;
           }
           input.value = '';
-          input.placeholder = 'Verificando...';
+          input.placeholder = '正在验证..';
           sendRequest(
             window.api.method,
             window.api.url,
@@ -1093,10 +1368,10 @@
             (data) => {
               const newFiles = JSON.parse(data);
               if (newFiles.encrypted) {
-                input.placeholder = 'Contraseña incorrecta...';
+                input.placeholder = '密码错误';
               } else {
                 window.fileCache.set(newFiles.parent, newFiles);
-                window.fileCache.set(`${newFiles.parent}/.upload`, passwd);
+                window.fileCache.set(`${newFiles.parent}/.password`, passwd);
                 fetchFileList(newFiles.parent);
               }
             }
@@ -1121,9 +1396,9 @@
       function addFileListLineListener(elem, path, url, size) {
         if (url) {
           elem.addEventListener('click', (event) => {
-            window.backFordwardCache.preview = true;
+            window.backForwardCache.preview = true;
             const content = document.querySelector('.content');
-            putLoadingAnimation(content);
+            putPreviewLoadingAnimation(content);
             switchRightDisplay('preview');
 
             const previewHandler = {
@@ -1289,148 +1564,158 @@
               },
             };
 
-            const name = path.split('/').pop();
-            const suffix = name.includes('.')
-              ? name.split('.').pop().toLowerCase()
-              : '__no_suffix__';
+            if (size === 0) {
+              previewHandler.fallback('空文件');
+            } else {
+              const name = path.split('/').pop();
+              const suffix = name.includes('.')
+                ? name.split('.').pop().toLowerCase()
+                : '__no_suffix__';
 
-            const contentType = previewHandler.fileType(suffix);
-            switch (contentType) {
-              case 'audio':
-                const audio = new Audio();
-                audio.style.outline = 'none';
-                audio.preload = 'auto';
-                audio.controls = 'controls';
-                audio.style.width = '100%';
-                audio.src = url;
-                content.innerHTML = '';
-                content.append(audio);
-                break;
-              case 'image':
-                const firstLoad = typeof Fancybox === 'undefined';
-                loadResource(
-                  fromCdn(
-                    'taobao',
-                    '/@fancyapps/ui/5.0.36/files/dist/fancybox/fancybox.css',
-                    '/@fancyapps/ui/5.0.36/files/dist/fancybox/fancybox.umd.js'
+              const contentType = previewHandler.fileType(suffix);
+              switch (contentType) {
+                case 'audio':
+                  const audio = new Audio();
+                  audio.style.outline = 'none';
+                  audio.preload = 'auto';
+                  audio.controls = 'controls';
+                  audio.style.width = '100%';
+                  audio.src = url;
+                  content.innerHTML = '';
+                  content.append(audio);
+                  break;
+                case 'image':
+                  const firstLoad = typeof Fancybox === 'undefined';
+                  loadResource(
+                    fromCdn(
+                      'taobao',
+                      '/@fancyapps/ui/5.0.36/files/dist/fancybox/fancybox.css',
+                      '/@fancyapps/ui/5.0.36/files/dist/fancybox/fancybox.umd.js'
+                    )
                   )
-                )
-                  .then(() => {
-                    if (firstLoad) {
-                      Fancybox.bind('[data-fancybox]');
-                    }
-                    const img = new Image();
-                    img.style.maxWidth = '100%';
-                    img.src = url;
-                    const fancy = document.createElement('a');
-                    fancy.setAttribute('data-fancybox', '');
-                    fancy.dataset.src = url;
-                    fancy.append(img);
-                    content.innerHTML = '';
-                    content.append(fancy);
-                  })
-                  .catch(previewHandler.fallback);
-                break;
-              case 'markdown':
-                renderMarkdown(path, url);
-                break;
-              case 'office':
-              case 'pdf':
-                const onlineViewerUrl =
-                  (contentType === 'office'
-                    ? '//view.officeapps.live.com/op/view.aspx?src='
-                    : '//mozilla.github.io/pdf.js/web/viewer.html?file=') +
-                  encodeURIComponent(url);
-                const div = document.createElement('div');
-                div.style.lineHeight = '2em';
-                div.style.background = 'rgba(218, 215, 215, 0.21)';
-                div.style.webkitTapHighlightColor = 'rgba(0, 0, 0, 0)';
-                div.style.cursor = 'pointer';
-                div.style.textAlign = 'center';
-                div.innerHTML = '新窗口打开';
-                div.addEventListener('click', () =>
-                  window.open(onlineViewerUrl)
-                );
-                content.innerHTML = '';
-                content.appendChild(div);
-                if (document.body.clientWidth >= 480) {
-                  const iframe = document.createElement('iframe');
-                  iframe.width = '100%';
-                  iframe.style.aspectRatio = '16 / 9';
-                  iframe.style.border = '0';
-                  iframe.src = onlineViewerUrl;
-                  content.appendChild(iframe);
-                }
-                break;
-              case 'text':
-                loadResource(
-                  fromCdn(
-                    'bytedance',
-                    '/highlight.js/11.4.0/styles/github.min.css',
-                    '/highlight.js/11.4.0/highlight.min.js'
-                  )
-                )
-                  .then(() => {
-                    sendRequest('GET', url, null, null, (data) => {
-                      const pre = document.createElement('pre');
-                      pre.style.background = 'rgb(245,245,245)';
-                      pre.style.padding = '5px';
-                      content.innerHTML = '';
-                      content.append(pre);
-                      pre.textContent = data;
-                      if (size <= 512000) {
-                        hljs.highlightElement(pre);
+                    .then(() => {
+                      if (firstLoad) {
+                        Fancybox.bind('[data-fancybox]');
                       }
-                    });
-                  })
-                  .catch(previewHandler.fallback);
-                break;
-              case 'video':
-                const video = document.createElement('div');
-                previewHandler
-                  .createDplayer(url, suffix, video)
-                  .then(() => {
-                    content.innerHTML = '';
-                    content.append(video);
-                    previewHandler.scrollToBottom();
-                  })
-                  .catch(previewHandler.fallback);
-                break;
-              case 'videomagnet':
-                fetch(url)
-                  .then((resp) => resp.text())
-                  .then((magnetUrl) => {
-                    loadResource(
-                      fromCdn(
-                        'jsdelivr',
-                        '/@webtor/embed-sdk-js/dist/index.min.js'
-                      )
-                    ).then(() => {
-                      const torrent = document.createElement('div');
-                      torrent.id = 'player';
-                      torrent.className = 'webtor';
-                      torrent.style.width = '100%';
-                      torrent.style.display = 'flex';
-                      torrent.style.alignItems = 'center';
-                      torrent.style.aspectRatio = '16 / 9';
-                      torrent.style.backgroundColor = 'black';
+                      const img = new Image();
+                      img.style.maxWidth = '100%';
+                      img.src = url;
+                      const fancy = document.createElement('a');
+                      fancy.setAttribute('data-fancybox', '');
+                      fancy.dataset.src = url;
+                      fancy.append(img);
                       content.innerHTML = '';
-                      content.appendChild(torrent);
-                      window.webtor = window.webtor || [];
-                      window.webtor.push({
-                        id: 'player',
-                        width: '100%',
-                        magnet: magnetUrl.trim(),
+                      content.append(fancy);
+                    })
+                    .catch(previewHandler.fallback);
+                  break;
+                case 'markdown':
+                  renderMarkdown(path, url);
+                  break;
+                case 'office':
+                case 'pdf':
+                  const onlineViewerUrl =
+                    (contentType === 'office'
+                      ? '//view.officeapps.live.com/op/view.aspx?src='
+                      : '//mozilla.github.io/pdf.js/web/viewer.html?file=') +
+                    encodeURIComponent(url);
+                  const div = document.createElement('div');
+                  div.style.lineHeight = '2em';
+                  div.style.background = 'rgba(218, 215, 215, 0.21)';
+                  div.style.webkitTapHighlightColor = 'rgba(0, 0, 0, 0)';
+                  div.style.cursor = 'pointer';
+                  div.style.textAlign = 'center';
+                  div.innerHTML = '新窗口打开';
+                  div.addEventListener('click', () =>
+                    window.open(onlineViewerUrl)
+                  );
+                  content.innerHTML = '';
+                  content.appendChild(div);
+                  if (document.body.clientWidth >= 480) {
+                    const iframe = document.createElement('iframe');
+                    iframe.width = '100%';
+                    iframe.style.aspectRatio = '16 / 9';
+                    iframe.style.border = '0';
+                    iframe.src = onlineViewerUrl;
+                    content.appendChild(iframe);
+                  }
+                  break;
+                case 'text':
+                  if (size > 2048000) {
+                    previewHandler.fallback('文件过大');
+                    break;
+                  }
+
+                  loadResource(
+                    fromCdn(
+                      'bytedance',
+                      '/highlight.js/11.4.0/styles/github.min.css',
+                      '/highlight.js/11.4.0/highlight.min.js'
+                    )
+                  )
+                    .then(() => {
+                      sendRequest('GET', url, null, null, (data) => {
+                        const pre = document.createElement('pre');
+                        pre.style.background = 'rgb(247, 248, 250)';
+                        pre.style.padding = '5px';
+                        content.innerHTML = '';
+                        content.append(pre);
+                        pre.textContent = data;
+                        if (size <= 512000) {
+                          hljs.highlightElement(pre);
+                        }
                       });
+                    })
+                    .catch(previewHandler.fallback);
+                  break;
+                case 'video':
+                  const video = document.createElement('div');
+                  previewHandler
+                    .createDplayer(url, suffix, video)
+                    .then(() => {
+                      content.innerHTML = '';
+                      content.append(video);
                       previewHandler.scrollToBottom();
-                    });
-                  })
-                  .catch(previewHandler.fallback);
-                break;
-              default:
-                previewHandler.fallback('Este archivo no admite vista previa');
-                break;
+                    })
+                    .catch(previewHandler.fallback);
+                  break;
+                case 'videomagnet':
+                  fetch(url)
+                    .then((resp) => resp.text())
+                    .then((magnetUrl) => {
+                      loadResource(
+                        fromCdn(
+                          'jsdelivr',
+                          '/@webtor/embed-sdk-js/dist/index.min.js'
+                        )
+                      ).then(() => {
+                        const torrent = document.createElement('div');
+                        torrent.id = 'player';
+                        torrent.className = 'webtor';
+                        torrent.style.width = '100%';
+                        torrent.style.display = 'flex';
+                        torrent.style.alignItems = 'center';
+                        torrent.style.aspectRatio = '16 / 9';
+                        torrent.style.backgroundColor = 'black';
+                        content.innerHTML = '';
+                        content.appendChild(torrent);
+                        window.webtor = window.webtor || [];
+                        window.webtor.push({
+                          id: 'player',
+                          width: '100%',
+                          magnet: magnetUrl.trim(),
+                        });
+                        previewHandler.scrollToBottom();
+                      });
+                    })
+                    .catch(previewHandler.fallback);
+                  break;
+                default:
+                  previewHandler.fallback('该文件不支持预览');
+                  break;
+              }
             }
+
             document.querySelector('.file-name').innerHTML = path;
             document
               .querySelector('.btn.download')
@@ -1447,7 +1732,7 @@
               .querySelector('.btn.share')
               .addEventListener('click', (event) => {
                 const sharePath = () => {
-                  const arr = window.backFordwardCache.current.split('/');
+                  const arr = window.backForwardCache.current.split('/');
                   let r = '';
                   for (let i = 1; i < arr.length; i++) {
                     r += '/' + arr[i];
@@ -1501,6 +1786,18 @@
         });
       }
 
+      function addBackToTopListener() {
+        const right = document.querySelector('.main .right');
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        backToTopBtn.addEventListener('click', () => right.scrollTo(0, 0));
+        right.addEventListener(
+          'scroll',
+          () =>
+            (backToTopBtn.dataset.hidden = right.scrollTop > 500 ? '0' : '1')
+        );
+      }
+
       function switchRightDisplay(display) {
         for (const c of document.querySelector('.right').children) {
           c.dataset.hidden = '1';
@@ -1519,79 +1816,89 @@
           document.querySelector('.file-upload-progress').dataset.hidden = '1';
           document.querySelector('.file-upload-wrapper').dataset.hidden = '0';
         } else if (display === 'list') {
+          const sortOrder = window.fileCache.get(
+            window.backForwardCache.current
+          )?.orderby;
+          document
+            .querySelectorAll('.list-header .row .file > div')
+            .forEach((field) => {
+              const indicator = field.querySelector('i');
+              if (new RegExp(field.className, 'i').test(sortOrder)) {
+                indicator.className = `zmdi zmdi-chevron-${
+                  sortOrder.includes('desc') ? 'down' : 'up'
+                }`;
+              } else {
+                indicator.className = 'zmdi zmdi-chevron-up disabled';
+              }
+            });
+
           document.querySelector('#readme').innerHTML = '';
           document.querySelector('.list-header').dataset.hidden = '0';
           document.querySelector('#file-list').dataset.hidden = '0';
           document.querySelector('.markdown-body').dataset.hidden = '0';
         }
-
         document.querySelector('.main').dataset.hidden = '0';
       }
 
       function switchBackForwardStatus(path) {
         if (path) {
-          window.backFordwardCache.deepest = path;
+          window.backForwardCache.deepest = path;
+        }
+        if (window.backForwardCache.root !== window.backForwardCache.current) {
+          window.backForwardCache.backable = true;
+          document.getElementById('arrow-back').removeAttribute('disabled');
+        } else {
+          window.backForwardCache.backable = false;
+          document.getElementById('arrow-back').setAttribute('disabled', true);
         }
         if (
-          window.backFordwardCache.root !== window.backFordwardCache.current
+          window.backForwardCache.deepest !== window.backForwardCache.current
         ) {
-          window.backFordwardCache.backable = true;
-          document.getElementById('arrow-back').style.color = 'black';
+          window.backForwardCache.forwardable = true;
+          document.getElementById('arrow-forward').removeAttribute('disabled');
         } else {
-          window.backFordwardCache.backable = false;
-          document.getElementById('arrow-back').style.color =
-            'rgb(218, 215, 215)';
-        }
-        if (
-          window.backFordwardCache.deepest !== window.backFordwardCache.current
-        ) {
-          window.backFordwardCache.forwardable = true;
-          document.getElementById('arrow-forward').style.color = 'black';
-        } else {
-          window.backFordwardCache.forwardable = false;
-          document.getElementById('arrow-forward').style.color =
-            'rgb(218, 215, 215)';
+          window.backForwardCache.forwardable = false;
+          document
+            .getElementById('arrow-forward')
+            .setAttribute('disabled', true);
         }
       }
 
       function back() {
-        if (!window.backFordwardCache.backable) {
+        if (!window.backForwardCache.backable) {
           return;
         }
-        if (window.backFordwardCache.preview) {
-          fetchFileList(window.backFordwardCache.current);
+        if (window.backForwardCache.preview) {
+          fetchFileList(window.backForwardCache.current);
         } else {
           let former = (() => {
             const formerEndIndex =
-              window.backFordwardCache.current.lastIndexOf('/');
-            return window.backFordwardCache.current.substring(
-              0,
-              formerEndIndex
-            );
+              window.backForwardCache.current.lastIndexOf('/');
+            return window.backForwardCache.current.substring(0, formerEndIndex);
           })();
           former = former || window.api.root;
           fetchFileList(former);
           switchBackForwardStatus();
         }
-        // console.log(window.backFordwardCache);
+        // console.log(window.backForwardCache);
       }
 
       function forward() {
-        if (!window.backFordwardCache.forwardable) {
+        if (!window.backForwardCache.forwardable) {
           return;
         }
         const current =
-          window.backFordwardCache.current === window.api.root
+          window.backForwardCache.current === window.api.root
             ? ''
-            : window.backFordwardCache.current;
+            : window.backForwardCache.current;
         const subLength = current ? current.length : 0;
         const later =
           current +
           '/' +
-          window.backFordwardCache.deepest.substring(subLength).split('/')[1];
+          window.backForwardCache.deepest.substring(subLength).split('/')[1];
         fetchFileList(later);
         switchBackForwardStatus();
-        // console.log(window.backFordwardCache);
+        // console.log(window.backForwardCache);
       }
 
       async function preCache(files, level) {
@@ -1678,38 +1985,131 @@
         });
       }
 
-      function fetchFileList(path) {
+      /**
+       * 1. 不对左侧目录树排序，仅对右侧文件列表排序。
+       * 2. 若页面已加载完毕，前端对缓存拷贝整体排序。
+       * 3. 若页面未加载完毕：
+       *  A. 个人版完全依赖 API 序，前端不排序。
+       *  B. 商业版完全抛弃 API 序：
+       *    a. 从头渲染列表时（打开新文件夹或点击排序按钮），前端对已加载数据的拷贝整体排序，向下滑动时，保证已加载数据显示完再加载新页，确保新页数据渲染到已加载数据后面。
+       *    b. 加载出新页时，前端对新页拷贝单独排序，保证新页数据渲染到已加载数据之后。
+       */
+      function sortList(clickedElem) {
+        const loadedPages = window.fileCache.get(
+          window.backForwardCache.current
+        );
+        const sortField = clickedElem.className;
+        const sortOrder = clickedElem
+          .querySelector('i')
+          .className.includes('up')
+          ? 'desc'
+          : 'asc';
+        const reverseFactor = sortOrder === 'asc' ? 1 : -1;
+        loadedPages.orderby = `${sortField} ${sortOrder}`;
+        loadedPages.compare = (a, b) =>
+          reverseFactor *
+          a[sortField]
+            .toString()
+            .localeCompare(b[sortField].toString(), undefined, {
+              numeric: true,
+              sensitivity: 'base',
+            });
+        if (!loadedPages.skipToken || window.GLOBAL_CONFIG.IS_BUSINESS) {
+          renderFileList(loadedPages);
+          return;
+        }
+        window.fileCache.set(loadedPages.parent, false);
+        fetchFileList(loadedPages.parent, loadedPages.orderby);
+      }
+
+      function fetchFileList(path, orderby) {
         // console.log('fetching ' + path);
-        const loading = document.querySelector('.loading-wrapper');
-        loading.dataset.hidden = '0';
-        window.backFordwardCache.preview = false;
-        window.backFordwardCache.current = path;
+        switchGlobalLoadingIndicator();
+
+        window.backForwardCache.preview = false;
+        window.backForwardCache.current = path;
 
         const cache = window.fileCache.get(path);
         if (cache === true) {
-          setTimeout(() => fetchFileList(path), 200);
+          setTimeout(() => fetchFileList(path), 300);
         } else if (cache) {
           renderPage(null, cache);
           preCacheCheck(cache, path);
         } else {
+          const fallback = () => {
+            window.fileCache.set(path, false);
+            switchGlobalLoadingIndicator('Failed!');
+          };
           window.fileCache.set(path, true);
           sendRequest(
             window.api.method,
             window.api.url,
-            window.api.formatPayload(path),
+            window.api.formatPayload(
+              path,
+              window.fileCache.get(`${path}/.password`),
+              { orderby }
+            ),
             window.api.headers,
-            renderPage,
-            () => {
-              window.fileCache.set(path, false);
-              const loadingText = loading.querySelector('.loading');
-              loadingText.innerText = 'Failed!';
-              setTimeout(() => {
-                loading.dataset.hidden = '1';
-                loadingText.innerText = 'Loading..';
-              }, 2000);
-            }
+            (data) => {
+              try {
+                data = JSON.parse(data);
+              } catch (_) {
+                fallback();
+                return;
+              }
+              if (data.error || data.files === undefined) {
+                fallback();
+                return;
+              }
+              renderPage(data);
+            },
+            fallback
           );
         }
+      }
+
+      function loadNextPage(loadedPages) {
+        if (loadedPages.loadingInProgress) {
+          return;
+        }
+
+        switchGlobalLoadingIndicator('Loading next page...');
+        loadedPages.loadingInProgress = true;
+        const fallback = () => {
+          switchGlobalLoadingIndicator('Failed!');
+          loadedPages.loadingInProgress = false;
+        };
+        sendRequest(
+          window.api.method,
+          window.api.url,
+          window.api.formatPayload(
+            loadedPages.parent,
+            window.fileCache.get(`${loadedPages.parent}/.password`),
+            {
+              skipToken: loadedPages.skipToken,
+              orderby: loadedPages.orderby,
+            }
+          ),
+          window.api.headers,
+          (data) => {
+            try {
+              data = JSON.parse(data);
+            } catch (_) {
+              fallback();
+              return;
+            }
+            if (data.error || data.files === undefined) {
+              fallback();
+              return;
+            }
+
+            loadedPages.files = loadedPages.files.concat(data.files);
+            loadedPages.skipToken = data.skipToken;
+            loadedPages.loadingInProgress = false;
+            renderPage(null, loadedPages, true);
+          },
+          fallback
+        );
       }
 
       function uploadFiles() {
@@ -1717,7 +2117,11 @@
         const fileInput = Array.from(
           document.getElementById('file-upload-input').files
         );
-        const odPath = window.backFordwardCache.current;
+        if (!fileInput.length) {
+          return;
+        }
+
+        const odPath = window.backForwardCache.current;
         const upFileList = fileInput.map((f) => ({
           remotePath: `${odPath}/${relativePath(f)}`,
           fileSize: f.size ? 1 : 0,
@@ -1735,7 +2139,7 @@
 
         function sendPage(pageIndex = 0) {
           if (pageIndex >= paginatedUpFileList.length) {
-            window.fileCache.delete(window.backFordwardCache.current);
+            window.fileCache.delete(window.backForwardCache.current);
             createUploadLogLine().className = 'log-separator';
             return;
           }
@@ -1746,7 +2150,7 @@
             window.api.url + '?upload',
             window.api.formatPayload(
               odPath,
-              window.fileCache.get(`${odPath}/.upload`) || '',
+              window.fileCache.get(`${odPath}/.password`),
               {
                 files: currentPage,
               }
@@ -1896,18 +2300,18 @@
           root: '/',
           url: window.GLOBAL_CONFIG.SCF_GATEWAY,
           method: 'POST',
-          formatPayload: (path, passwd, kvs) =>
-            JSON.stringify({
-              path,
-              passwd,
-              ...window.api.accessToken,
-              ...kvs,
-            }),
+          formatPayload: (path, passwd, kvs) => {
+            const payload = { path, passwd, ...kvs };
+            if (window.GLOBAL_CONFIG.IS_BUSINESS) {
+              delete payload['orderby'];
+            }
+            return JSON.stringify(payload);
+          },
           headers: {
             'Content-type': 'application/json; charset=utf-8',
           },
         };
-        window.backFordwardCache = {
+        window.backForwardCache = {
           root: window.api.root,
           deepest: window.api.root,
           current: window.api.root,
@@ -1920,28 +2324,10 @@
         const initialPath =
           new URLSearchParams(window.location.search).get('path') ||
           window.api.root;
-        if (window.GLOBAL_CONFIG.IS_CF) {
-          fetchFileList(initialPath);
-          addBackForwardListener();
-          addFileUploadListener();
-        } else {
-          sendRequest(
-            window.api.method,
-            window.api.url + '?accessToken',
-            null,
-            window.api.headers,
-            (data) => {
-              const accessToken = JSON.parse(data);
-              window.api.accessToken = {
-                encrypted: accessToken.encrypted,
-                plain: accessToken.plain,
-              };
-              fetchFileList(initialPath);
-              addBackForwardListener();
-              addFileUploadListener();
-            }
-          );
-        }
+        fetchFileList(initialPath);
+        addBackForwardListener();
+        addFileUploadListener();
+        addBackToTopListener();
       });
     </script>
   </head>
@@ -1950,23 +2336,26 @@
     <template id="tree-node-wrapper-template">
       <div class="tree-node-wrapper">
         <div class="tree-node">
-          <ion-icon></ion-icon>
-          <ion-icon></ion-icon>
+          <i></i>
+          <i></i>
           <div class="tree-node-name"></div>
         </div>
       </div>
     </template>
-    <template id="file-wrapper-templete">
+    <template id="file-wrapper-template">
       <div class="row file-wrapper">
         <div class="file">
-          <ion-icon></ion-icon>
+          <i></i>
           <span class="name"></span>
-          <span class="time"></span>
-          <span class="size"></span>
+          <span class="lastModifiedDateTime"></span>
+          <div class="size">
+            <span class="value"></span>
+            <span class="unit"></span>
+          </div>
         </div>
       </div>
     </template>
-    <template id="loading-wrapper-templete">
+    <template id="loading-wrapper-template">
       <div class="sk-folding-cube">
         <div class="sk-cube1 sk-cube"></div>
         <div class="sk-cube2 sk-cube"></div>
@@ -1979,13 +2368,9 @@
     </div>
     <div class="header-wrapper">
       <div class="header">
-        <ion-icon id="arrow-back" class="logo" name="arrow-back"></ion-icon>
-        <ion-icon
-          id="arrow-forward"
-          class="logo"
-          name="arrow-forward"
-        ></ion-icon>
-        <ion-icon id="main-page" class="logo" name="folder"></ion-icon>
+        <i id="arrow-back" disabled class="zmdi zmdi-arrow-left logo"></i>
+        <i id="arrow-forward" disabled class="zmdi zmdi-arrow-right logo"></i>
+        <i id="main-page" class="zmdi zmdi-folder logo"></i>
         <div class="nav">
           <span id="path"> </span>
         </div>
@@ -2005,8 +2390,18 @@
           <center> <img src="https://i.ibb.co/QPnLyk8/sphinxdrivebanner-sphinx.jpg" class="img-fluid"> <center>
             <div class="row">
               <div class="file">
-                <span class="name">ITEMS</span>
-                <span class="size">SIZE</span>
+                <div class="name" onclick="sortList(this)">
+                  <span>ITEMS</span>
+                  <i class="zmdi zmdi-chevron-up"></i>
+                </div>
+                <div class="lastModifiedDateTime" onclick="sortList(this)">
+            
+                  <i class="zmdi zmdi-chevron-up"></i>
+                </div>
+                <div class="size" onclick="sortList(this)">
+                  <span>SIZE</span>
+                  <i class="zmdi zmdi-chevron-up"></i>
+                </div>
               </div>
             </div>
           </div>
@@ -2023,14 +2418,11 @@
             <div class="content"></div>
           </div>
           <div class="password-wrapper">
-             <center> <img src="https://i.ibb.co/QPnLyk8/sphinxdrivebanner-sphinx.jpg" class="img-fluid"> <center>
-                <br> 
-              <br> 
+         <center> <img src="https://i.ibb.co/QPnLyk8/sphinxdrivebanner-sphinx.jpg" class="img-fluid"> <center>
             <div class="password">
               <input type="password" />
               <button>Enviar</button>
-                  </div> 
-               <br> 
+               <br>
               <br>
               <center> <img src="https://i.ibb.co/D4Z3QLX/sphinxpremiumcontrase-a.jpg" class="img-fluid"> <center>
             </div>
@@ -2059,6 +2451,9 @@
           </div>
         </div>
       </div>
+    </div>
+    <div id="back-to-top" data-hidden="1">
+      <i class="zmdi zmdi-caret-up-circle"></i>
     </div>
   </body>
 </html>
