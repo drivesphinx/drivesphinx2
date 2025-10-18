@@ -3,16 +3,10 @@
   <head>
     <script>
       window.GLOBAL_CONFIG = {
-        SCF_GATEWAY: `//${drive.sphx.workers.dev}`, // worker 地址
+        SCF_GATEWAY: `//drive.sphx.workers.dev`, // worker 地址
         SITE_NAME: `SphinxDrive`, // 站点名称，显示在右上角
         IS_BUSINESS: false, // 是否为商业版，E5 请改为 true
         PRELOAD: false, // 是否预加载文件列表，文件夹非常少才建议开启
-        CDN_MAP: {
-          // 备用 unpkg CDN 选项（本项目不对其服务稳定性和内容安全性承担任何责任）：
-          // - //npm.webcache.cn
-          unpkg: '//cdn.jsdelivr.net/npm',
-          bytedance: '//cdn.bytedance.com/cdn/expire-1-M',
-        },
       };
     </script>
     <meta charset="utf-8" />
@@ -199,19 +193,32 @@
       }
 
       .password input {
-        padding: 0 0.5em;
-        outline: none;
-        border: solid rgb(218, 215, 215) 1px;
+         width: 300px;
+    font-size: 16px;
+    background: #ffffff;
+    outline: none;
+    border: solid #004aff 3px;
+    border-radius: 50px;
+    font-weight: 600;
+    margin: 5px;
+    height: 55px;
+    text-align: center;
       }
 
       .password button,
-      .file-upload-chooser button,
+        .file-upload-chooser button,
       .file-upload-chooser select,
       .file-upload-label {
-        background: white;
-        height: 100%;
-        outline: none;
-        border: solid rgb(218, 215, 215) 1px;
+        width: 120px;
+         font-size: 16px;
+         background: #60a6ff;
+         outline: none;
+         border: solid rgb(67 36 36) 3px;
+         border-radius: 50px;
+         font-weight: 600;
+         margin: 5px;
+         height: 55px;
+         text-align: center;
       }
 
       .password button:active,
@@ -373,10 +380,17 @@
         border: solid rgb(218, 215, 215) 1px;
         border-radius: 1em;
         margin: 1em 0.2em;
-        width: 4em;
+        width: 9em;
         height: 2em;
         line-height: 2em;
         user-select: none;
+        -moz-user-select: none;
+        -o-user-select: none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        background-color: #69a0ff; font-family: cursive; font-size: 20px;
+           user-select: none;
         -moz-user-select: none;
         -o-user-select: none;
         -khtml-user-select: none;
@@ -416,6 +430,7 @@
 
       i {
         font-size: 1.5em !important;
+        color: #003df5;
       }
 
       i.disabled {
@@ -424,10 +439,9 @@
 
       * {
         box-sizing: border-box;
-        font-family: serif;
+        font-family: BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
         outline: none;
-        -webkit-tap-highlight-color: transparent; /* Removes touch background */
-        -webkit-touch-callout: none; /* Removes the callout on touch */
+        background-image: url(https://i.ibb.co/7xkZS7n6/Server-Sphinx-Drive-Wallpaper-Maintenance.jpg); background-repeat: no-repeat; background-attachment: fixed;
       }
 
       .markdown-body {
@@ -475,11 +489,12 @@
       }
 
       .header {
-        padding: 0 1.8em 0 1em;
+        padding: 0 5em 0 5em;
         height: 100%;
         display: flex;
         align-items: center;
         border-bottom: solid rgb(218, 215, 215) 1px;
+        font-size: 18px;
       }
 
       .logo {
@@ -589,9 +604,9 @@
       }
 
       .row.file-wrapper {
-        font-size: 0.8em;
-        padding: 0 1em;
-        height: 2em;
+        font-size: 1.0em;
+        padding: 0 3em;
+        height: 3em;
       }
 
       .row.file-wrapper i {
@@ -785,7 +800,12 @@
       }
 
       function fromCdn(cdnName, ...resources) {
-        const baseURL = window.GLOBAL_CONFIG.CDN_MAP[cdnName];
+        const cdnMap = {
+          jsdelivr: '//gcore.jsdelivr.net/npm',
+          taobao: '//registry.npmmirror.com',
+          bytedance: '//cdn.bytedance.com/cdn/expire-1-M',
+        };
+        const baseURL = cdnMap[cdnName];
         return resources.map((r) => `${baseURL}${r}`);
       }
 
@@ -854,9 +874,7 @@
 
       function createGlobalLoadingIndicator(msg, timeout) {
         const parent = document.querySelector('.loading-indicator');
-        const fragment = document
-          .getElementById('loading-wrapper-template')
-          .content.cloneNode(true);
+        const fragment = document.getElementById('loading-wrapper-template').content.cloneNode(true);
         const loadingWrapper = fragment.firstElementChild;
         let alive = true;
 
@@ -865,7 +883,7 @@
             return;
           }
           loadingWrapper.querySelector('.loading').innerText = txt;
-        };
+        }
         const remove = () => {
           if (!alive) {
             return;
@@ -873,7 +891,8 @@
           alive = false;
           try {
             parent.removeChild(loadingWrapper);
-          } catch (error) {}
+          } catch (error) {
+          }
         };
         const close = (txt, timeout) => {
           if (!alive) {
@@ -885,17 +904,17 @@
           } else {
             remove();
           }
-        };
-
+        }
+        
         text(msg || 'Loading...');
         loadingWrapper.dataset.hidden = '0';
         parent.appendChild(fragment);
-
+        
         if (timeout && typeof timeout === 'number') {
           setTimeout(close, timeout);
         }
 
-        return { text, close };
+        return {text, close};
       }
 
       function renderPage(data, cache, fromLoadNextPage) {
@@ -1195,24 +1214,24 @@
 
         await loadResource(
           fromCdn(
-            'unpkg',
-            '/marked@16.2.0/lib/marked.umd.min.js',
-            '/marked-highlight@2.2.2/lib/index.umd.min.js',
+            'taobao',
+            '/marked/15.0.4/files/marked.min.js',
+            '/marked-highlight/2.2.1/files/lib/index.umd.js',
           ),
           fromCdn(
-            'unpkg',
-            '/github-markdown-css@5.8.1/github-markdown.min.css',
-            '/@highlightjs/cdn-assets@11.11.1/styles/github.min.css',
-            '/@highlightjs/cdn-assets@11.11.1/highlight.min.js',
+            'bytedance',
+            '/github-markdown-css/5.1.0/github-markdown-light.min.css',
+            '/highlight.js/11.4.0/styles/github.min.css',
+            '/highlight.js/11.4.0/highlight.min.js',
           ),
           // Optional Markdown extensions
-          // fromCdn('unpkg', '/marked-alert@2.1.2/dist/index.umd.js'),
+          // fromCdn('jsdelivr', '/marked-alert@2.1.2/dist/index.umd.js'),
           // fromCdn(
-          //   'unpkg',
-          //   '/marked-katex-extension@5.1.5/lib/index.umd.min.js',
-          //   '/katex@0.16.22/dist/katex.min.css',
-          //   '/katex@0.16.22/dist/katex.min.js',
-          // ),
+          //   'taobao',
+          //   '/marked-katex-extension/5.1.3/files/lib/index.umd.js',
+          //   '/katex/0.16.19/files/dist/katex.min.css',
+          //   '/katex/0.16.19/files/dist/katex.min.js'
+          // )
         );
 
         const render = (text) => {
@@ -1257,8 +1276,8 @@
             // markedAlert(),
             // markedKatex({
             //   throwOnError: false,
-            //   nonStandard: true,
-            // }),
+            //   nonStandard: true
+            // })
           ).parse(text, {
             gfm: true,
             renderer: renderer,
@@ -1302,14 +1321,14 @@
         const buttonParent = button.parentElement;
         const buttonClone = button.cloneNode(true);
         buttonParent.replaceChild(buttonClone, button);
-        input.placeholder = '请输入密码';
+        input.placeholder = 'Contraseña...';
         buttonClone.addEventListener('click', (event) => {
           const passwd = input.value;
           if (!input.value) {
             return;
           }
           input.value = '';
-          input.placeholder = '正在验证..';
+          input.placeholder = 'Verificando...';
           sendRequest(
             window.api.method,
             window.api.url,
@@ -1318,7 +1337,7 @@
             (data) => {
               const newFiles = JSON.parse(data);
               if (newFiles.encrypted) {
-                input.placeholder = '密码错误';
+                input.placeholder = 'Contraseña incorrecta...';
               } else {
                 window.fileCache.set(newFiles.parent, newFiles);
                 window.fileCache.set(`${newFiles.parent}/.password`, passwd);
@@ -1458,6 +1477,8 @@
                   return 'upload';
                 } else if (['mp4', 'avi', 'mkv', 'flv', 'm3u8'].includes(suffix)) {
                   return 'video';
+                } else if (['videomagnet'].includes(suffix)) {
+                  return 'videomagnet';
                 }
               },
               createDplayer: (video, type, elem) => {
@@ -1532,9 +1553,9 @@
                   const firstLoad = typeof Fancybox === 'undefined';
                   loadResource(
                     fromCdn(
-                      'unpkg',
-                      '/@fancyapps/ui@6.0.25/dist/fancybox/fancybox.min.css',
-                      '/@fancyapps/ui@6.0.25/dist/fancybox/fancybox.umd.min.js',
+                      'taobao',
+                      '/@fancyapps/ui/5.0.36/files/dist/fancybox/fancybox.css',
+                      '/@fancyapps/ui/5.0.36/files/dist/fancybox/fancybox.umd.js',
                     ),
                   )
                     .then(() => {
@@ -1590,9 +1611,9 @@
 
                   loadResource(
                     fromCdn(
-                      'unpkg',
-                      '/@highlightjs/cdn-assets@11.11.1/styles/github.min.css',
-                      '/@highlightjs/cdn-assets@11.11.1/highlight.min.js',
+                      'bytedance',
+                      '/highlight.js/11.4.0/styles/github.min.css',
+                      '/highlight.js/11.4.0/highlight.min.js',
                     ),
                   )
                     .then(() => {
@@ -1621,8 +1642,36 @@
                     })
                     .catch(previewHandler.fallback);
                   break;
+                case 'videomagnet':
+                  fetch(url)
+                    .then((resp) => resp.text())
+                    .then((magnetUrl) => {
+                      loadResource(
+                        fromCdn('jsdelivr', '/@webtor/embed-sdk-js/dist/index.min.js'),
+                      ).then(() => {
+                        const torrent = document.createElement('div');
+                        torrent.id = 'player';
+                        torrent.className = 'webtor';
+                        torrent.style.width = '100%';
+                        torrent.style.display = 'flex';
+                        torrent.style.alignItems = 'center';
+                        torrent.style.aspectRatio = '16 / 9';
+                        torrent.style.backgroundColor = 'black';
+                        content.innerHTML = '';
+                        content.appendChild(torrent);
+                        window.webtor = window.webtor || [];
+                        window.webtor.push({
+                          id: 'player',
+                          width: '100%',
+                          magnet: magnetUrl.trim(),
+                        });
+                        previewHandler.scrollToBottom();
+                      });
+                    })
+                    .catch(previewHandler.fallback);
+                  break;
                 default:
-                  previewHandler.fallback('该文件不支持预览');
+                  previewHandler.fallback('Vista previa no disponible...');
                   break;
               }
             }
@@ -2243,10 +2292,12 @@
             <button class="upload-entry-btn">在此上传文件</button>
           </div>
           <div class="list-header">
+            <center> <img src="https://i.ibb.co/QPnLyk8/sphinxdrivebanner-sphinx.jpg" class="img-fluid"> <center>
+                <br> 
             <div class="row">
               <div class="file">
                 <div class="name" onclick="sortList(this)">
-                  <span>ITEMS</span>
+                 <span>ITEMS</span>
                   <i class="zmdi zmdi-chevron-up"></i>
                 </div>
                 <div class="lastModifiedDateTime" onclick="sortList(this)">
@@ -2257,7 +2308,7 @@
                   <span>SIZE</span>
                   <i class="zmdi zmdi-chevron-up"></i>
                 </div>
-              </div>
+                 </div>
             </div>
           </div>
           <div id="file-list"></div>
@@ -2267,19 +2318,18 @@
           <div class="preview">
             <div class="info">
               <div class="file-name"></div>
-              <div class="btn download">下载</div>
-              <div class="btn quote">引用</div>
-              <div class="btn share">分享</div>
+              <div class="btn download">DESCARGAR</div>
+              <div class="btn share">COMPARTIR</div>
             </div>
             <div class="content"></div>
           </div>
           <div class="password-wrapper">
             <div class="password">
               <input type="password" />
-              <button>提交</button>
-            </div>
-          </div>
-          <div class="file-upload-wrapper">
+              <button>ENVIAR</button>
+              </div>
+              </div>
+           <div class="file-upload-wrapper" style="display: none;">
             <div class="file-upload-chooser">
               <select
                 onchange="document.getElementById('file-upload-input').webkitdirectory=this.value;"
@@ -2298,10 +2348,7 @@
               <button onclick="uploadFiles()">上传</button>
             </div>
             <div class="file-upload-progress"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+         </div>
     <div id="back-to-top" data-hidden="1">
       <i class="zmdi zmdi-caret-up-circle"></i>
     </div>
